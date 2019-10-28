@@ -1,32 +1,32 @@
 /**
- * Adds 1 public method to MCG and 1 to L.Marker to facilitate changing
+ * Adds 1 public method to MCG and 1 to window.noConflictLeafletCore.Marker to facilitate changing
  * markers' icon options and refreshing their icon and their parent clusters
  * accordingly (case where their iconCreateFunction uses data of childMarkers
  * to make up the cluster icon).
  */
 
 
-L.MarkerClusterGroup.include({
+window.noConflictLeafletCore.MarkerClusterGroup.include({
 	/**
 	 * Updates the icon of all clusters which are parents of the given marker(s).
 	 * In singleMarkerMode, also updates the given marker(s) icon.
-	 * @param layers L.MarkerClusterGroup|L.LayerGroup|Array(L.Marker)|Map(L.Marker)|
-	 * L.MarkerCluster|L.Marker (optional) list of markers (or single marker) whose parent
+	 * @param layers window.noConflictLeafletCore.MarkerClusterGroup|window.noConflictLeafletCore.LayerGroup|Array(window.noConflictLeafletCore.Marker)|Map(window.noConflictLeafletCore.Marker)|
+	 * window.noConflictLeafletCore.MarkerCluster|window.noConflictLeafletCore.Marker (optional) list of markers (or single marker) whose parent
 	 * clusters need to be updated. If not provided, retrieves all child markers of this.
-	 * @returns {L.MarkerClusterGroup}
+	 * @returns {window.noConflictLeafletCore.MarkerClusterGroup}
 	 */
 	refreshClusters: function (layers) {
 		if (!layers) {
 			layers = this._topClusterLevel.getAllChildMarkers();
-		} else if (layers instanceof L.MarkerClusterGroup) {
+		} else if (layers instanceof window.noConflictLeafletCore.MarkerClusterGroup) {
 			layers = layers._topClusterLevel.getAllChildMarkers();
-		} else if (layers instanceof L.LayerGroup) {
+		} else if (layers instanceof window.noConflictLeafletCore.LayerGroup) {
 			layers = layers._layers;
-		} else if (layers instanceof L.MarkerCluster) {
+		} else if (layers instanceof window.noConflictLeafletCore.MarkerCluster) {
 			layers = layers.getAllChildMarkers();
-		} else if (layers instanceof L.Marker) {
+		} else if (layers instanceof window.noConflictLeafletCore.Marker) {
 			layers = [layers];
-		} // else: must be an Array(L.Marker)|Map(L.Marker)
+		} // else: must be an Array(window.noConflictLeafletCore.Marker)|Map(window.noConflictLeafletCore.Marker)
 		this._flagParentsIconsNeedUpdate(layers);
 		this._refreshClustersIcons();
 
@@ -40,7 +40,7 @@ L.MarkerClusterGroup.include({
 
 	/**
 	 * Simply flags all parent clusters of the given markers as having a "dirty" icon.
-	 * @param layers Array(L.Marker)|Map(L.Marker) list of markers.
+	 * @param layers Array(window.noConflictLeafletCore.Marker)|Map(window.noConflictLeafletCore.Marker) list of markers.
 	 * @private
 	 */
 	_flagParentsIconsNeedUpdate: function (layers) {
@@ -64,7 +64,7 @@ L.MarkerClusterGroup.include({
 	/**
 	 * Re-draws the icon of the supplied markers.
 	 * To be used in singleMarkerMode only.
-	 * @param layers Array(L.Marker)|Map(L.Marker) list of markers.
+	 * @param layers Array(window.noConflictLeafletCore.Marker)|Map(window.noConflictLeafletCore.Marker) list of markers.
 	 * @private
 	 */
 	_refreshSingleMarkerModeMarkers: function (layers) {
@@ -82,18 +82,18 @@ L.MarkerClusterGroup.include({
 	}
 });
 
-L.Marker.include({
+window.noConflictLeafletCore.Marker.include({
 	/**
 	 * Updates the given options in the marker's icon and refreshes the marker.
 	 * @param options map object of icon options.
 	 * @param directlyRefreshClusters boolean (optional) true to trigger
 	 * MCG.refreshClustersOf() right away with this single marker.
-	 * @returns {L.Marker}
+	 * @returns {window.noConflictLeafletCore.Marker}
 	 */
 	refreshIconOptions: function (options, directlyRefreshClusters) {
 		var icon = this.options.icon;
 
-		L.setOptions(icon, options);
+		window.noConflictLeafletCore.setOptions(icon, options);
 
 		this.setIcon(icon);
 

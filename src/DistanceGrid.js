@@ -1,12 +1,12 @@
 
-L.DistanceGrid = function (cellSize) {
+window.noConflictLeafletCore.DistanceGrid = function (cellSize) {
 	this._cellSize = cellSize;
 	this._sqCellSize = cellSize * cellSize;
 	this._grid = {};
 	this._objectPoint = { };
 };
 
-L.DistanceGrid.prototype = {
+window.noConflictLeafletCore.DistanceGrid.prototype = {
 
 	addObject: function (obj, point) {
 		var x = this._getCoord(point.x),
@@ -14,7 +14,7 @@ L.DistanceGrid.prototype = {
 		    grid = this._grid,
 		    row = grid[y] = grid[y] || {},
 		    cell = row[x] = row[x] || [],
-		    stamp = L.Util.stamp(obj);
+		    stamp = window.noConflictLeafletCore.Util.stamp(obj);
 
 		this._objectPoint[stamp] = point;
 
@@ -35,7 +35,7 @@ L.DistanceGrid.prototype = {
 		    cell = row[x] = row[x] || [],
 		    i, len;
 
-		delete this._objectPoint[L.Util.stamp(obj)];
+		delete this._objectPoint[window.noConflictLeafletCore.Util.stamp(obj)];
 
 		for (i = 0, len = cell.length; i < len; i++) {
 			if (cell[i] === obj) {
@@ -91,7 +91,7 @@ L.DistanceGrid.prototype = {
 
 						for (k = 0, len = cell.length; k < len; k++) {
 							obj = cell[k];
-							dist = this._sqDist(objectPoint[L.Util.stamp(obj)], point);
+							dist = this._sqDist(objectPoint[window.noConflictLeafletCore.Util.stamp(obj)], point);
 							if (dist < closestDistSq ||
 								dist <= closestDistSq && closest === null) {
 								closestDistSq = dist;

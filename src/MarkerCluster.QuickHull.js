@@ -25,7 +25,7 @@ Retrieved from: http://en.literateprograms.org/Quickhull_(Javascript)?oldid=1843
 */
 
 (function () {
-	L.QuickHull = {
+	window.noConflictLeafletCore.QuickHull = {
 
 		/*
 		 * @param {Object} cpt a point to be measured from the baseline
@@ -149,7 +149,7 @@ Retrieved from: http://en.literateprograms.org/Quickhull_(Javascript)?oldid=1843
 	};
 }());
 
-L.MarkerCluster.include({
+window.noConflictLeafletCore.MarkerCluster.include({
 	getConvexHull: function () {
 		var childMarkers = this.getAllChildMarkers(),
 			points = [],
@@ -160,6 +160,6 @@ L.MarkerCluster.include({
 			points.push(p);
 		}
 
-		return L.QuickHull.getConvexHull(points);
+		return window.noConflictLeafletCore.QuickHull.getConvexHull(points);
 	}
 });

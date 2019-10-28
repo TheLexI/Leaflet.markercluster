@@ -1,9 +1,9 @@
-export var MarkerCluster = L.MarkerCluster = L.Marker.extend({
-	options: L.Icon.prototype.options,
+export var MarkerCluster = window.noConflictLeafletCore.MarkerCluster = window.noConflictLeafletCore.Marker.extend({
+	options: window.noConflictLeafletCore.Icon.prototype.options,
 
 	initialize: function (group, zoom, a, b) {
 
-		L.Marker.prototype.initialize.call(this, a ? (a._cLatLng || a.getLatLng()) : new L.LatLng(0, 0),
+		window.noConflictLeafletCore.Marker.prototype.initialize.call(this, a ? (a._cLatLng || a.getLatLng()) : new window.noConflictLeafletCore.LatLng(0, 0),
             { icon: this, pane: group.options.clusterPane });
 
 		this._group = group;
@@ -15,7 +15,7 @@ export var MarkerCluster = L.MarkerCluster = L.Marker.extend({
 		this._iconNeedsUpdate = true;
 		this._boundsNeedUpdate = true;
 
-		this._bounds = new L.LatLngBounds();
+		this._bounds = new window.noConflictLeafletCore.LatLngBounds();
 
 		if (a) {
 			this._addChild(a);
@@ -77,7 +77,7 @@ export var MarkerCluster = L.MarkerCluster = L.Marker.extend({
 	},
 
 	getBounds: function () {
-		var bounds = new L.LatLngBounds();
+		var bounds = new window.noConflictLeafletCore.LatLngBounds();
 		bounds.extend(this._bounds);
 		return bounds;
 	},
@@ -109,7 +109,7 @@ export var MarkerCluster = L.MarkerCluster = L.Marker.extend({
 		this._boundsNeedUpdate = true;
 		this._setClusterCenter(new1);
 
-		if (new1 instanceof L.MarkerCluster) {
+		if (new1 instanceof window.noConflictLeafletCore.MarkerCluster) {
 			if (!isNotificationFromChild) {
 				this._childClusters.push(new1);
 				new1.__parent = this;
@@ -202,7 +202,7 @@ export var MarkerCluster = L.MarkerCluster = L.Marker.extend({
 			lngSum += childLatLng.lng * childCount;
 		}
 
-		this._latlng = this._wLatLng = new L.LatLng(latSum / totalCount, lngSum / totalCount);
+		this._latlng = this._wLatLng = new window.noConflictLeafletCore.LatLng(latSum / totalCount, lngSum / totalCount);
 
 		// Reset dirty flag.
 		this._boundsNeedUpdate = false;

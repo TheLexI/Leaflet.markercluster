@@ -1,12 +1,12 @@
 /*
-* Extends L.Marker to include two extra methods: clusterHide and clusterShow.
+* Extends window.noConflictLeafletCore.Marker to include two extra methods: clusterHide and clusterShow.
 * 
 * They work as setOpacity(0) and setOpacity(1) respectively, but
 * don't overwrite the options.opacity
 * 
 */
 
-L.Marker.include({
+window.noConflictLeafletCore.Marker.include({
 	clusterHide: function () {
 		var backup = this.options.opacity;
 		this.setOpacity(0);
